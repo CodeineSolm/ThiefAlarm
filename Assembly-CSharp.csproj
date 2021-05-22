@@ -57,8 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\TooCubeForest\demoScenes\Movement.cs" />
-    <Compile Include="Assets\Scripts\DoorAlarm.cs" />
     <Compile Include="Assets\Scripts\Thief.cs" />
+    <Compile Include="Assets\Scripts\Alarm.cs" />
+    <Compile Include="Assets\Scripts\House.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
