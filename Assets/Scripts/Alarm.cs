@@ -9,7 +9,7 @@ public class Alarm : MonoBehaviour
     [SerializeField] private AudioSource _alarm;
     [SerializeField] private House _house;
 
-    public event UnityAction AlarmSound;
+    public event UnityAction AlarmActivated;
 
     private void Start()
     {
@@ -18,17 +18,24 @@ public class Alarm : MonoBehaviour
 
     private void OnEnable()
     {
+        _house.ThiefEscape += OnThiefEscape;
         _house.ThiefInvasion += OnThiefInvasion;
     }
 
     private void OnDisable()
     {
+        _house.ThiefEscape -= OnThiefEscape;
         _house.ThiefInvasion -= OnThiefInvasion;
     }
 
     private void OnThiefInvasion()
     {
         _alarm.Play();
-        AlarmSound?.Invoke();
+        AlarmActivated?.Invoke();
+    }
+
+    private void OnThiefEscape()
+    {
+        _alarm.Stop();
     }
 }

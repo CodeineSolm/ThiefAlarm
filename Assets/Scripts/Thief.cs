@@ -56,12 +56,12 @@ public class Thief : MonoBehaviour
 
     private void OnEnable()
     {
-        _alarm.AlarmSound += OnAlarmSound;
+        _alarm.AlarmActivated += OnAlarmSound;
     }
 
     private void OnDisable()
     {
-        _alarm.AlarmSound -= OnAlarmSound;
+        _alarm.AlarmActivated -= OnAlarmSound;
     }
 
     private void OnAlarmSound()
