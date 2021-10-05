@@ -11,14 +11,12 @@ public class Thief : MonoBehaviour
 
     private float _runAwaySpeed;
     private Animator _animator;
-    private Transform _transform;
-    private bool _isAlarm = false;
+    private bool _isAlarmPlayed = false;
     
 
     private void Start()
     {
         _runAwaySpeed = _speed;
-        _transform = GetComponent<Transform>();
         _animator = GetComponent<Animator>();
     }
 
@@ -26,9 +24,9 @@ public class Thief : MonoBehaviour
     {
         _animator.SetFloat("Speed", _speed);
 
-        if (_isAlarm)
+        if (_isAlarmPlayed)
         {
-            MoveAway();
+            RunAway();
         }
         else
         {
@@ -36,21 +34,22 @@ public class Thief : MonoBehaviour
         }
     }
 
-    private void MoveAway()
+    private void RunAway()
     {
         _speed = _runAwaySpeed;
-        _transform.Translate(_transform.position.x * _speed * Time.deltaTime, 0, 0);
+        transform.Translate(transform.position.x * _speed * Time.deltaTime, 0, 0);
     }
 
     private void MoveToTarget()
     {
-        if (_transform.position != _target.position)
+        if (transform.position != _target.position)
         {
-            _transform.position = Vector3.MoveTowards(_transform.position, _target.position, _speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, _target.position, _speed * Time.deltaTime);
         }
         else
         {
             _speed = 0;
+            _animator.SetTrigger("Attack");
         }
     }
 
@@ -66,6 +65,6 @@ public class Thief : MonoBehaviour
 
     private void OnAlarmSound()
     {
-        _isAlarm = true;
+        _isAlarmPlayed = true;
     }
 }

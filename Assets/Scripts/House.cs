@@ -12,7 +12,7 @@ public class House : MonoBehaviour
     {
         if (collision.TryGetComponent<Thief>(out Thief thief))
         {
-            ThiefInvasion.Invoke();
+            ThiefInvasion?.Invoke();
         }
     }
 
@@ -20,7 +20,7 @@ public class House : MonoBehaviour
     {
         if (collision.TryGetComponent<Thief>(out Thief thief))
         {
-            ThiefEscape.Invoke();
+            ThiefEscape?.Invoke();
         }
     }
 }
