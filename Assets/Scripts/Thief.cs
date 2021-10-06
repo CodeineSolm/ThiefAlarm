@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -22,7 +20,7 @@ public class Thief : MonoBehaviour
 
     private void Update()
     {
-        _animator.SetFloat("Speed", _speed);
+        _animator.SetFloat(AnimatorThiefController.Params.Speed, _speed);
 
         if (_isAlarmPlayed)
         {
@@ -49,7 +47,7 @@ public class Thief : MonoBehaviour
         else
         {
             _speed = 0;
-            _animator.SetTrigger("Attack");
+            _animator.SetTrigger(AnimatorThiefController.Triggers.Attack);
         }
     }
 

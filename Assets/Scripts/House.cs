@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class House : MonoBehaviour
 {
     public event UnityAction ThiefInvasion;
-    public event UnityAction ThiefEscape;
+    public event UnityAction ThiefEscaped;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -20,7 +20,7 @@ public class House : MonoBehaviour
     {
         if (collision.TryGetComponent<Thief>(out Thief thief))
         {
-            ThiefEscape?.Invoke();
+            ThiefEscaped?.Invoke();
         }
     }
 }

@@ -10,6 +10,7 @@ public class Alarm : MonoBehaviour
 
     private AudioSource _alarm;
     private bool _isActivated;
+    private float _volumeChange = 0.3f;
 
     public event UnityAction AlarmActivated;
 
@@ -27,13 +28,13 @@ public class Alarm : MonoBehaviour
     private void OnEnable()
     {
         _house.ThiefInvasion += OnThiefInvasion;
-        _house.ThiefEscape += OnThiefEscape;
+        _house.ThiefEscaped += OnThiefEscape;
     }
 
     private void OnDisable()
     {
         _house.ThiefInvasion -= OnThiefInvasion;
-        _house.ThiefEscape -= OnThiefEscape;
+        _house.ThiefEscaped -= OnThiefEscape;
     }
 
     private void OnThiefInvasion()
@@ -51,14 +52,14 @@ public class Alarm : MonoBehaviour
     {
         if (_isActivated)
         {
-            _alarm.volume += 0.3f * Time.deltaTime;
+            _alarm.volume += _volumeChange * Time.deltaTime;
 
             if (_alarm.volume == 1f)
                 AlarmActivated?.Invoke();
         }
         else
         {
-            _alarm.volume -= 0.3f * Time.deltaTime;
+            _alarm.volume -= _volumeChange * Time.deltaTime;
 
             if (_alarm.volume == 0)
                 _alarm?.Stop();
